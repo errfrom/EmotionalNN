@@ -1,2 +1,2 @@
-# EmotionalNN
-Lightweight library for NNDA (For self-education only)
+# EmotionalNeuron
+Lightweight Scientific Library (For self-education only)
