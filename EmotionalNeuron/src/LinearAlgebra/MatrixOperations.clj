@@ -4,13 +4,16 @@
 
 ; совпадает ли число элементов в каждой строке матрицы
 (defn matrix? [m]
-  if (== (count (set (map count m))) 1) true false
+  (if (== (count (set (map count m))) 1) true false))
 
 ; умножение матриц
 (defn matrix-mult [m1 m2]
-  (if (not= (count (first m1)) (count m2))
-    (throw (Exception. "Число столбцов m1 должно быть равно числу строк m2."))
-    (transpose (_matrix-mult m1 (transpose m2)))))
+  (if (or (not (matrix? m1)) (not (matrix? m2)))
+    (throw (Exception. "Число элементов в каждой строке матрицы
+                        должно быть одинаковым."))
+    (if (not= (count (first m1)) (count m2))
+      (throw (Exception. "Число столбцов m1 должно быть равно числу строк m2."))
+      (transpose (_matrix-mult m1 (transpose m2))))))
 
 (defn _matrix-mult [m1 tm2]
   (if (nil? (seq tm2)) nil
